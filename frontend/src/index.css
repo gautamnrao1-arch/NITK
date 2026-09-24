@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  @apply bg-paper text-ink font-sans antialiased;
+}
+
+.glass {
+  background: rgba(255, 252, 247, 0.72);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(228, 221, 208, 0.9);
+}
