@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IntentLock — Attack Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,500;0,8..60,600;1,8..60,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="site-header">
+        <p class="kicker">Research prototype · NITK</p>
+        <h1>IntentLock</h1>
+        <p class="lede">
+          Provenance-typed, information-bounded action enforcement for AI agents.
+          Even when an agent is influenced by malicious external content, an
+          independent authorization layer can prevent actions that fall outside
+          the user’s original intent.
+        </p>
+      </header>
+
+      <section>
+        <div class="section-head">
+          <div>
+            <h2>Attack Lab</h2>
+            <p class="muted">
+              Hard-coded indirect prompt-injection scenarios. No real mail, files,
+              or payments leave this machine.
+            </p>
+          </div>
+          <div class="toggle" id="mode-toggle">
+            <button data-mode="unprotected" type="button">Unprotected</button>
+            <button data-mode="intentlock" class="on" type="button">IntentLock</button>
+          </div>
+        </div>
+        <div class="glass pad">
+          <div class="chips" id="scenario-chips"></div>
+          <p class="muted meta" id="scenario-meta"></p>
+          <div class="run-row">
+            <button class="btn" id="run-btn" type="button">Run scenario</button>
+            <span class="err" id="error"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="glass pad flow-panel">
+        <h3>Live visual flow</h3>
+        <ol class="flow" id="flow"></ol>
+      </section>
+
+      <div class="grid">
+        <section class="glass pad" id="steps">
+          <h3>Step-by-step attack visualization</h3>
+          <p class="muted">
+            Choose a scenario and run it. You will see the user request, the
+            untrusted document, the agent’s proposed tool call, then the security
+            decision.
+          </p>
+        </section>
+        <div class="stack">
+          <section class="glass pad" id="policy">
+            <h3>Task policy</h3>
+            <p class="muted">Compiled from the user’s original request after you run a scenario.</p>
+          </section>
+          <section class="glass pad" id="decision">
+            <h3>Security decision</h3>
+            <p class="muted">
+              IntentLock’s verdict is produced by deterministic Python rules, not by
+              another language model.
+            </p>
+          </section>
+        </div>
+      </div>
+
+      <section class="glass pad audit">
+        <h3>Audit trace</h3>
+        <p class="muted">In-memory log of each run. Schema is ready to persist to PostgreSQL later.</p>
+        <div id="audit"><p class="muted">No runs yet.</p></div>
+      </section>
+
+      <footer>
+        Policy checks are ordinary Python predicates. The model never casts the
+        final ALLOW / BLOCK / ASK vote. Simulated tools only.
+      </footer>
+    </div>
+    <script src="/assets/app.js"></script>
+  </body>
+</html>
